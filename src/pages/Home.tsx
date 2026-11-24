@@ -104,7 +104,7 @@ export const Home: React.FC = () => {
             <div className="bg-[#FCF9E8] rounded-4xl p-6 sm:p-7 border border-[#F5E8A8] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-soft hover:shadow-soft-lg transition-all">
               <div className="space-y-3 flex-1 text-center sm:text-left">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-butter-200 text-forest-800 text-xs font-bold">
-                  <span>Pesan Hari ke-{todayMessage.dayNumber} ({todayMessage.theme})</span>
+                  <span>Pesan Hari Ini</span>
                   <span>🌱</span>
                 </div>
                 <p className="font-heading font-bold text-base sm:text-lg text-forest-900 leading-snug">

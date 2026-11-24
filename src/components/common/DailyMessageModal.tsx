@@ -42,9 +42,10 @@ export const DailyMessageModal: React.FC<DailyMessageModalProps> = ({ isOpen, on
         </div>
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-forest-50 border border-forest-100 text-forest-700 text-xs font-bold mb-4">
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-forest-50 border border-forest-100 text-forest-800 text-xs font-bold mb-4">
           <Calendar className="w-3.5 h-3.5 text-forest-700" />
-          <span>Pesan Hari ke-{currentMessage.dayNumber} dari 14 Hari ({currentMessage.theme})</span>
+          <span>Pesan Hari Ini</span>
+          <span>🌱</span>
         </div>
 
         {/* Quote Content */}
