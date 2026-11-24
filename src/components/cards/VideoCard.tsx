@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Clock } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { VideoItem } from '../../types';
 
 interface VideoCardProps {
@@ -28,15 +28,9 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, className = "" }) =
 
           {/* Center Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-forest-700/85 backdrop-blur-sm text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-forest-700 transition-all shadow-md">
-              <Play className="w-5 h-5 fill-white ml-0.5" />
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-forest-700/85 backdrop-blur-sm text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-forest-700 transition-all shadow-md">
+              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-white ml-0.5" />
             </div>
-          </div>
-
-          {/* Duration Badge */}
-          <div className="absolute bottom-2.5 right-2.5 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md text-[11px] font-medium text-white flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            <span>{video.duration}</span>
           </div>
         </div>
 

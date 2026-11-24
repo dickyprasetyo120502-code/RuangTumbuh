@@ -10,7 +10,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     category: 'Kenali Emosimu',
     youtubeId: 'd3st1aMmmiU',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://img.youtube.com/vi/d3st1aMmmiU/hqdefault.jpg',
     featured: true,
     summary: {
       points: [
@@ -65,7 +65,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     category: 'Pertemanan',
     youtubeId: '9FnYwciRPxE',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://img.youtube.com/vi/9FnYwciRPxE/hqdefault.jpg',
     featured: true,
     summary: {
       points: [
@@ -110,7 +110,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     category: 'Kenali Dirimu',
     youtubeId: '-B8pabVDVJ0',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://img.youtube.com/vi/-B8pabVDVJ0/hqdefault.jpg',
     featured: true,
     summary: {
       points: [
@@ -155,7 +155,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     category: 'Dunia Digital',
     youtubeId: 'm2VAO1r7s1g',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://img.youtube.com/vi/m2VAO1r7s1g/hqdefault.jpg',
     featured: true,
     summary: {
       points: [
@@ -199,7 +199,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     category: 'Kenali Emosimu',
     youtubeId: 'gcLkD9EfHXs',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://img.youtube.com/vi/gcLkD9EfHXs/hqdefault.jpg',
     featured: true,
     summary: {
       points: [

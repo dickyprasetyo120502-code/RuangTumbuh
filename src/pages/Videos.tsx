@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   Play,
-  Clock,
   CheckCircle,
   Sparkles,
   ArrowRight,
   RotateCcw,
   Search,
   ExternalLink,
-  BookOpen,
-  MonitorPlay,
-  Lightbulb,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { VIDEOS_DATA } from '../data/videos';
@@ -26,7 +22,6 @@ export const Videos: React.FC = () => {
   });
 
   const [activeTab, setActiveTab] = useState<'rangkuman' | 'transkrip' | 'refleksi' | 'kuis'>('rangkuman');
-  const [playerMode, setPlayerMode] = useState<'youtube' | 'direct' | 'interactive'>('youtube');
   const [searchQuery, setSearchQuery] = useState('');
   const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
@@ -84,149 +79,55 @@ export const Videos: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
       {/* Page Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-heading font-extrabold text-3xl sm:text-4xl text-forest-900 tracking-tight">
-            Video Pembelajaran & Edukasi
-          </h1>
-          <p className="text-sm text-forest-700/80 mt-1">
-            Tonton video interaktif, rangkum materi intinya, dan uji pemahamanmu dengan kuis seru.
-          </p>
-        </div>
-
-        {/* Player Mode Switcher */}
-        <div className="flex items-center gap-1.5 p-1.5 bg-white border border-[#E8E2D5] rounded-2xl shadow-card self-start sm:self-auto overflow-x-auto">
-          <button
-            onClick={() => setPlayerMode('direct')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
-              playerMode === 'direct'
-                ? 'bg-forest-700 text-white shadow-sm'
-                : 'text-forest-700/80 hover:text-forest-900'
-            }`}
-          >
-            <Play className="w-3.5 h-3.5 fill-current" />
-            <span>Pemutar Langsung</span>
-          </button>
-          <button
-            onClick={() => setPlayerMode('youtube')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
-              playerMode === 'youtube'
-                ? 'bg-forest-700 text-white shadow-sm'
-                : 'text-forest-700/80 hover:text-forest-900'
-            }`}
-          >
-            <MonitorPlay className="w-3.5 h-3.5" />
-            <span>Mode YouTube</span>
-          </button>
-          <button
-            onClick={() => setPlayerMode('interactive')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
-              playerMode === 'interactive'
-                ? 'bg-forest-700 text-white shadow-sm'
-                : 'text-forest-700/80 hover:text-forest-900'
-            }`}
-          >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>Ringkasan Cepat</span>
-          </button>
-        </div>
+      <div>
+        <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-forest-900 tracking-tight">
+          Video Pembelajaran & Edukasi
+        </h1>
+        <p className="text-xs sm:text-sm text-forest-700/80 mt-1">
+          Tonton video resmi, pelajari rangkuman materinya, dan uji pemahamanmu dengan kuis interaktif.
+        </p>
       </div>
 
       {/* Main Grid: Left Video Player (8 cols) + Right Playlist (4 cols) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* Left Column: Player & Tabs */}
-        <div className="lg:col-span-8 space-y-6">
-          {/* Video Player Display */}
-          {playerMode === 'direct' && (
-            <div className="bg-black rounded-4xl overflow-hidden aspect-[16/9] shadow-soft-lg relative border border-[#E8E2D5]">
-              <video
-                key={activeVideo.id}
-                controls
-                playsInline
-                poster={activeVideo.thumbnail}
-                className="w-full h-full object-cover"
-              >
-                {activeVideo.videoUrl && <source src={activeVideo.videoUrl} type="video/mp4" />}
-                Browser kamu tidak mendukung pemutar video HTML5.
-              </video>
-            </div>
-          )}
-
-          {playerMode === 'youtube' && (
-            <div className="bg-black rounded-4xl overflow-hidden aspect-[16/9] shadow-soft-lg relative border border-[#E8E2D5]">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?rel=0&modestbranding=1`}
-                title={activeVideo.title}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          )}
-
-          {playerMode === 'interactive' && (
-            /* Interactive Presentation View */
-            <div className="bg-gradient-to-br from-forest-800 to-forest-900 text-white rounded-4xl p-6 sm:p-10 aspect-[16/9] shadow-soft-lg flex flex-col justify-between relative overflow-hidden border border-[#E8E2D5]">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-butter-300">
-                  <Lightbulb className="w-3.5 h-3.5" />
-                  <span>Mode Ringkasan Interaktif Siswa</span>
-                </div>
-                <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl leading-snug">
-                  {activeVideo.title}
-                </h3>
-              </div>
-
-              {/* Key Highlights Inside Player */}
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15 my-2">
-                <p className="text-xs sm:text-sm text-forest-100 font-medium leading-relaxed">
-                  💡 {activeVideo.summary.keyTakeaway}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs text-forest-200">
-                <span>Durasi Pembelajaran: {activeVideo.duration}</span>
-                <a
-                  href={`https://www.youtube.com/watch?v=${activeVideo.youtubeId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-forest-900 font-bold hover:bg-butter-100 transition-colors shadow-sm"
-                >
-                  <span>Buka Langsung di YouTube</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-          )}
+        <div className="lg:col-span-8 space-y-6 w-full">
+          {/* YouTube Video Player Display - 100% Responsive for Mobile & Desktop */}
+          <div className="bg-black rounded-3xl sm:rounded-4xl overflow-hidden aspect-[16/9] shadow-soft-lg relative border border-[#E8E2D5] w-full">
+            <iframe
+              key={activeVideo.youtubeId}
+              src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?rel=0&modestbranding=1`}
+              title={activeVideo.title}
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
 
           {/* Quick Notice & Direct YouTube Link */}
-          <div className="flex items-center justify-between px-2 text-xs text-forest-700/70">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] sm:text-xs text-forest-700/70 px-1">
             <span>
-              Kendala pemutaran di jaringan sekolah? Kamu bisa klik tombol di sebelah kanan.
+              Tonton langsung di aplikasi YouTube jika ingin layar penuh:
             </span>
             <a
               href={`https://www.youtube.com/watch?v=${activeVideo.youtubeId}`}
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-forest-900 hover:text-forest-700 inline-flex items-center gap-1 underline underline-offset-2 shrink-0 ml-2"
+              className="font-semibold text-forest-900 hover:text-forest-700 inline-flex items-center gap-1 underline underline-offset-2 shrink-0 self-start sm:self-auto"
             >
-              <span>Tonton di YouTube</span>
+              <span>Buka di YouTube</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
           {/* Video Title & Meta */}
-          <div className="bg-white rounded-3xl p-6 border border-[#E8E2D5] shadow-card">
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E8E2D5] shadow-card">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <span className="text-xs font-semibold px-3 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-100">
                 {activeVideo.category}
               </span>
-              <div className="flex items-center gap-1.5 text-xs font-medium text-forest-700/70">
-                <Clock className="w-3.5 h-3.5" />
-                <span>Durasi: {activeVideo.duration}</span>
-              </div>
             </div>
-            <h2 className="font-heading font-bold text-xl sm:text-2xl text-forest-900 leading-snug">
+            <h2 className="font-heading font-bold text-lg sm:text-2xl text-forest-900 leading-snug">
               {activeVideo.title}
             </h2>
             <p className="text-xs sm:text-sm text-forest-700/80 mt-2 leading-relaxed">
@@ -478,7 +379,7 @@ export const Videos: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Title and duration */}
+                  {/* Title and category */}
                   <div className="min-w-0 flex-1">
                     <span className="text-[10px] font-semibold text-forest-700/70 uppercase">
                       {video.category}
@@ -486,10 +387,6 @@ export const Videos: React.FC = () => {
                     <h5 className="font-heading font-bold text-xs text-forest-900 line-clamp-2 leading-snug">
                       {video.title}
                     </h5>
-                    <div className="flex items-center gap-1 text-[11px] text-forest-700/60 mt-0.5">
-                      <Clock className="w-3 h-3" />
-                      <span>{video.duration}</span>
-                    </div>
                   </div>
                 </div>
               );
